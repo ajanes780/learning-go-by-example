@@ -13,6 +13,11 @@ func main() {
 		fmt.Fprintf(w, "Hello, %q", html.EscapeString(r.URL.Path))
 	})
 
+	http.HandleFunc("/dorks", func(writer http.ResponseWriter, request *http.Request) {
+		fmt.Fprintf(writer, "Hello you, %q", html.EscapeString(request.URL.Path))
+
+	})
+
 	log.Println("Listening on localhost:8080")
 
 	log.Fatal(http.ListenAndServe(":8080", nil))
